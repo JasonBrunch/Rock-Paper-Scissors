@@ -1,0 +1,36 @@
+h1{
+    font-size: 38px;
+}
+h2{
+    background-color: burlywood;
+    text-align: center;
+}
+
+.buttons{
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+
+}
+.button{
+    display:inline-block;
+    background-color: aquamarine;
+    height: 100px;
+    width: 100px;
+    margin: 20px;
+    
+}
+.scoreContainer{
+    background-color: slateblue;
+}
+.playerScoreContainer{
+    background-color: tomato;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.resultText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

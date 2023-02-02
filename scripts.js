@@ -1,36 +1,68 @@
-mainGameLoop();
+function rockFunction(){
+    
+    mainGameLoop("ROCK");
+    
+}
+function scissorFunction(){
+   
+    mainGameLoop("SCISSORS");
+};
+function paperFunction(){
+    mainGameLoop("PAPER");
+}
+
+const button1 = document.querySelector('.button1');
+button1.addEventListener('click' , rockFunction);
+
+const button2 = document.querySelector('.button2');
+button2.onclick = () => paperFunction();
+
+const button3 = document.querySelector('.button3');
+button3.addEventListener('click', scissorFunction);
+
+const resultText = document.querySelector('.resultText');
+function updateResult(_result){
+    resultText.textContent = _result;
+
+}
 
 
+let playerScore = 0;
+let computerScore = 0;
+function mainGameLoop(_playerChoice){
 
-
-function mainGameLoop(){
-    let playerScore = 0;
-    let computerScore = 0;
-    for(let i = 0; i<5; i++){
         let computerChoice = getComputerChoice();
-        let playerChoice = getPlayerChoice();
+        console.log("computer choice is" + computerChoice);
+        let playerChoice = _playerChoice;
+        console.log("Player choice is " + playerChoice);
         let gameOutcome = gameRound(computerChoice, playerChoice);
+        console.log("Game outcome is " + gameOutcome);
         if(gameOutcome === "You Win!"){
             playerScore++;
+            console.log("Player score increased");
         }
-        else if(gameOutcome =="You Lose!"){
+        else if(gameOutcome === "You lose!"){
             computerScore++;
+            console.log("Computer score increased");
+            
         }
-        console.log(gameOutcome);
-    }
-    //DETERMINE WINNER
-    console.log("Your score: " + playerScore);
-    console.log("Computer Score: " + computerScore);
-    if(playerScore > computerScore){
-        console.log("YOU WIN THE GAME!")
-    }
-    else if(computerScore > playerScore){
-        console.log("YOU LOSE THE GAME!");
-    }
-    else if(computerScore == playerScore){
-        console.log("TIE GAME ALL AROUND!");
-    }
+        else if(gameOutcome === "Tie Game"){
+        }
+        updateScores();
+        updateResult(gameOutcome);
+        
 }
+function updateScores(){
+    let playerScoreText = document.querySelector('.playerScore');
+    playerScoreText.textContent = playerScore.toString();
+    console.log("Updating player score text " + playerScore);
+    
+
+    let computerScoreText = document.querySelector('.computerScore');
+    computerScoreText.textContent = computerScore.toString();
+    console.log("Updating computer score text " + computerScore);
+}
+
 
 //GET THE COMPUTERS CHOICE OF ROCK PAPER OR SCISSORS
 
@@ -47,11 +79,6 @@ function getComputerChoice(){
     }
 }
 
-//ASK THE PLAYER FOR THEIR CHOICE - CASE INSENSITIVE
-function getPlayerChoice(){
-let playerChoice = prompt("Choose Rock, Paper, or Scissors?")
-return playerChoice;
-}
 
 //ROUND, TO PARAMETERS - THE PLAYERSELECTION AND COMPUTER SELECTION
 function gameRound(_computerChoice, _playerChoice){
@@ -84,3 +111,4 @@ function gameRound(_computerChoice, _playerChoice){
     //BUG
     else return "Broke";
 }
+

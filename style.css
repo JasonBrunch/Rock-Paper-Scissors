@@ -29,7 +29,7 @@ h2{
     align-items: center;
     justify-content: center;
 }
-.resultText{
+.resultText, gameEndText{
     display: flex;
     align-items: center;
     justify-content: center;

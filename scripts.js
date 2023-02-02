@@ -30,7 +30,8 @@ function updateResult(_result){
 let playerScore = 0;
 let computerScore = 0;
 function mainGameLoop(_playerChoice){
-
+        if(gameRounds <= 0){console.log("GAME OVER");
+        return;}
         let computerChoice = getComputerChoice();
         console.log("computer choice is" + computerChoice);
         let playerChoice = _playerChoice;
@@ -51,7 +52,44 @@ function mainGameLoop(_playerChoice){
         updateScores();
         updateResult(gameOutcome);
         
+        gameRounds--;
+        updateGameRounds();
+        if(gameRounds <= 0){
+            displayWinner();
+        }
+        
+    
+               
 }
+function displayWinner(){
+    let result = "";
+    if(playerScore > computerScore){
+        result = "YOU WIN the GAME!";
+    }
+    else if(playerScore < computerScore){
+        result = "You LOSE THE GAME!";
+    }
+    else if(playerScore === computerScore){
+        result = "TIE GAME NO WINNERS NO LOSERS";
+    }
+    gameRoundText.textContent = result;
+}
+        const gameRoundText = document.querySelector('.gameEndText');
+        let gameRounds = 5;
+        function updateGameRounds(){
+            console.log("GAME ROUND UPDATING: " + gameRounds);
+            switch(gameRounds){
+                case 5: gameRoundText.textContent = "Round One";
+                        break;
+                case 4: gameRoundText.textContent = "Round Two";
+                        break
+                case 3: gameRoundText.textContent = "Round Three"; break;
+                case 2: gameRoundText.textContent = "Round Four"; break;
+                case 1: gameRoundText.textContent = "Final Round!";break;
+            }
+
+
+        }
 function updateScores(){
     let playerScoreText = document.querySelector('.playerScore');
     playerScoreText.textContent = playerScore.toString();
